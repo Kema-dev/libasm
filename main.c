@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 17:03:25 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 17:04:26 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@ void test_read()
 {
 	char	*strok;
 	char	*strfail;
-	char	buf1[400];
-	char	buf2[400];
+	char	*buf1;
+	char	*buf2;
 	int		fd;
 
+	if (!(buf1 = calloc(100, sizeof(char))))
+		return (-1);
+	if (!(buf2 = calloc(100, sizeof(char))))
+	{
+		free(buf1);
+		return (-1);
+	}
 	printf("Testing read:\n\n");
 	strok = "\033[0;32mok!\033[0;37m";
 	strfail = "\033[0;31mfail!\033[0;37m";
@@ -38,6 +45,9 @@ void test_read()
 		printf("%s\n", strok);
 	else
 		printf("%s\n", strfail);
+	
+	free(buf1);
+	free(buf2);
 }
 
 void test_write()
