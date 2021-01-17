@@ -1,10 +1,12 @@
-			global	_start
+			global		ft_strlen
 
-			section	.text
-_ft_strlen:		xor		rax, rax
-	_loop:		cmp		byte [rdi + rax], 0
-				jz		_res
-				inc		rax
-				jmp		_loop
+			section		.text
+ft_strlen:	xor			rax, rax
+			jmp			test
 
-	_res:		ret
+test:		cmp	byte	[rdi + rax], 0
+			jne			increment
+			ret
+
+increment	inc			rax
+			jmp			test
