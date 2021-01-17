@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 16:05:01 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 16:14:35 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ int	main(void)
 	printf("Testing strcpy:\n\n");
 	while (lencpy[++i])
 	{
-	printf("Test with \"%s\" : ", lencpy[i]);
-	if (strcmp(strcpy(dest1, lencpy[i]), ft_strcpy(dest1, lencpy[i])) == 0)
-		printf("%s\n", strok);
-	else
-		printf("%s\n", strfail);
+		printf("Test with \"%s\" : ", lencpy[i]);
+		if (strcmp(strcpy(dest1, lencpy[i]), ft_strcpy(dest1, lencpy[i])) == 0)
+			printf("%s\n", strok);
+		else
+			printf("%s\n", strfail);
 	}
 	i = -1;
 	printf("\n");
@@ -94,12 +94,12 @@ int	main(void)
 	printf("Testing strcmp:\n\n");
 	while (cmp[++i + 1])
 	{
-	printf("Test with \"%s\" and \"%s\" : ", cmp[i], cmp[i + 1]);
-	if ((ft_strcmp(cmp[i], cmp[i + 1]) - strcmp(cmp[i], cmp[i + 1])) == 0)
-		printf("%s\n", strok);
-	else
-		printf("%s\n", strfail);
-	i++;
+		printf("Test with \"%s\" and \"%s\" : ", cmp[i], cmp[i + 1]);
+		if ((ft_strcmp(cmp[i], cmp[i + 1]) - strcmp(cmp[i], cmp[i + 1])) == 0)
+			printf("%s\n", strok);
+		else
+			printf("%s\n", strfail);
+		i++;
 	}
 	free (cmp);
 	i = -1;
@@ -108,13 +108,13 @@ int	main(void)
 	printf("Testing strdup:\n\n");
 	while (lencpy[++i])
 	{
-	printf("Test with \"%s\" : ", lencpy[i]);
-	dest1 = strdup(lencpy[i]);
-	dest2 = ft_strdup(lencpy[i]);
-	if (strcmp(dest1, dest2) == 0)
-		printf("%s\n", strok);
-	else
-		printf("%s\n", strfail);
+		printf("Test with \"%s\" : ", lencpy[i]);
+		dest1 = strdup(lencpy[i]);
+		dest2 = ft_strdup(lencpy[i]);
+		if (strcmp(dest1, dest2) == 0)
+			printf("%s\n", strok);
+		else
+			printf("%s\n", strfail);
 	}
 	i = -1;
 	printf("\n");
