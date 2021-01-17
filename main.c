@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 17:06:25 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 17:06:42 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void test_read()
 	buf1[400] = 0;
 	close(fd);
 	fd = open("main.c", O_RDONLY);
-	ret2 = read(fd, buf2, 400);
+	ret2 = ft_read(fd, buf2, 400);
 	buf2[400] = 0;
 	close(fd);
 
