@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 14:10:55 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 15:45:43 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,12 @@ int	main(void)
 	printf("\n\nTesting write:\n\n");
 	fd1 = open("testfile1", O_CREAT, S_IRWXU);
 	fd2 = open("testfile1", O_CREAT, S_IRWXU);
-	read(fd1, dest1, 100);
-	read(fd2, dest2, 100);
 	while (lencpy[++i])
 	{
 		ft_write(fd1, lencpy[i], 100);
-		write(fd1, lencpy[i], 100);
+		write(fd2, lencpy[i], 100);
+		read(fd1, dest1, 100);
+		read(fd2, dest2, 100);
 		printf("Test with \"%s\" : ", lencpy[i]);
 		if (ft_strcmp(dest1, dest2) == 0)
 			printf("%s\n", strok);
