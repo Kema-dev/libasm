@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 16:59:37 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 17:01:50 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void test_read()
 {
 	char	*strok;
 	char	*strfail;
-	char	buf1[401];
-	char	buf2[401];
+	char	*buf1[401];
+	char	*buf2[401];
 	int		fd;
 
 	printf("Testing read:\n\n");
@@ -40,7 +40,7 @@ void test_read()
 		printf("%s\n", strfail);
 }
 
-void test_read()
+void test_write()
 {
 	
 }
@@ -48,8 +48,6 @@ void test_read()
 int	main(void)
 {
 	ssize_t	i;
-	int		fd1;
-	int		fd2;
 	char	*dest1;
 	char	*dest2;
 	char	**lencpy;
