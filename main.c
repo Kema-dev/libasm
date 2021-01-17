@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 17:04:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 17:04:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void test_read()
 	int		fd;
 
 	if (!(buf1 = calloc(100, sizeof(char))))
-		return (-1);
+		return ;
 	if (!(buf2 = calloc(100, sizeof(char))))
 	{
 		free(buf1);
-		return (-1);
+		return ;
 	}
 	printf("Testing read:\n\n");
 	strok = "\033[0;32mok!\033[0;37m";
