@@ -2,24 +2,24 @@
 
 			section		.text
 ;int		ft_strcmp(const char *s1, const char *s2);
-_ft_strcmp:	mov			al, BYTE [rdi]
-			mov			bl, BYTE [rsi]
-			cmp			al, 0
-			je			zero
-			cmp			bl, 0
-			je			zero
-			jmp			loop
+_ft_strcmp:	xor			rax, rax
+			jmp			test
 
-loop:		mov			al, BYTE [rdi + rcx]
-			mov			bl, BYTE [rsi + rcx]
-			cmp byte	al, bl
-			jne			end_loop
-			inc			rcx
-			jmp			loop
+test:
+			mov			cl, BYTE [rdi]
+			mov			dl, BYTE [rsi]
+			cmp			cl, 0
+			je			stop
+			cmp			dl, 0
+			je			stop
+			cmp			cl, dl
+			jne			stop
+			inc			rdi
+			inc			rsi
+			jmp			test
 
-end_loop:	mov			rax, [rdi + rcx]
-			sub			rax, [rsi + rcx]
-			ret
-
-zero:		mov			rax, 0
+stop:
+			movzx		rax, cl
+    		movzx		rbx, dl
+   			sub			rax, rbx
 			ret
