@@ -2,16 +2,16 @@
 
 			section		.text
 ;int		ft_strcmp(const char *s1, const char *s2);
-_ft_strcmp:	mov	byte	al, [rdi]
-			mov	byte	bl, [rsi]
+_ft_strcmp:	mov			al, BYTE [rdi]
+			mov			bl, BYTE [rsi]
 			cmp			al, 0
 			je			zero
 			cmp			bl, 0
 			je			zero
 			jmp			loop
 
-loop:		mov	byte	al, [rdi + rcx]
-			mov	byte	bl, [rsi + rcx]
+loop:		mov			al, BYTE [rdi + rcx]
+			mov			bl, BYTE [rsi + rcx]
 			cmp byte	al, bl
 			jne			end_loop
 			inc			rcx
