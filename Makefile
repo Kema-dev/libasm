@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/16 21:06:26 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/17 08:15:55 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ MOUL_OUT	=	moulinette.out
 
 SRCS_DIR	=	sources/
 
-SRCS		=	ft_strlen.s
-				#ft_strcpy.s \
+SRCS		=	ft_strlen.s\
+				ft_strcpy.s
 				#ft_strcmp.s \
 				#ft_write.s \
 				#ft_read.s \
