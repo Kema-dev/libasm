@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 17:04:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 17:06:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void test_read()
 	char	*buf1;
 	char	*buf2;
 	int		fd;
+	int		ret1;
+	int		ret2;
 
 	if (!(buf1 = calloc(100, sizeof(char))))
 		return ;
@@ -32,16 +34,16 @@ void test_read()
 	strok = "\033[0;32mok!\033[0;37m";
 	strfail = "\033[0;31mfail!\033[0;37m";
 	fd = open("main.c", O_RDONLY);
-	buf1 = read(fd, buf1, 400)
+	ret1 = read(fd, buf1, 400);
 	buf1[400] = 0;
 	close(fd);
 	fd = open("main.c", O_RDONLY);
-	buf2 = read(fd, buf2, 400)
+	ret2 = read(fd, buf2, 400);
 	buf2[400] = 0;
 	close(fd);
 
 	printf("Test with \"%s\" : ", "main.c");
-	if (strcmp(buf1, buf2) == 0)
+	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
 		printf("%s\n", strok);
 	else
 		printf("%s\n", strfail);
