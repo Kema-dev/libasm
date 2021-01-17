@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 17:14:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 17:17:31 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void test_read()
 		printf("%s\n", strok);
 	else
 		printf("%s\n", strfail);
-	
+
 	free(buf1);
 	free(buf2);
 }
