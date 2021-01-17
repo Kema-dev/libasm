@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 19:01:11 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 14:06:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 int	main(void)
 {
 	ssize_t	i;
+	int		fd1;
+	int		fd2;
 	char	*dest1;
 	char	*dest2;
 	char	**lencpy;
@@ -66,7 +68,6 @@ int	main(void)
 	cmp[10] = NULL;
 
 	printf("\n\nTesting strlen:\n\n");
-
 	while (lencpy[++i])
 	{
 		printf("Test with \"%s\" : ", lencpy[i]);
@@ -98,7 +99,6 @@ int	main(void)
 		printf("%s\n", strok);
 	else
 		printf("%s\n", strfail);
-	printf("res=%d\n", ft_strcmp(cmp[i], cmp[i + 1]));
 	i++;
 	}
 	free (cmp);
@@ -115,6 +115,24 @@ int	main(void)
 		printf("%s\n", strok);
 	else
 		printf("%s\n", strfail);
+	}
+	i = -1;
+	printf("\n");
+
+	printf("\n\nTesting write:\n\n");
+	fd1 = open(testfile1, O_CREAT, S_IRWXU);
+	fd2 = open(testfile1, O_CREAT, S_IRWXU);
+	dest1 = read(fd1, dest1, 100);
+	dest2 = read(fd2, dest2, 100);
+	while (lencpy[++i])
+	{
+		ft_write(fd1, lencpy[i], 100);
+		write(fd1, lencpy[i], 100);
+		printf("Test with \"%s\" : ", lencpy[i]);
+		if (ft_strcmp(dest1, dest2) == 0)
+			printf("%s\n", strok);
+		else
+			printf("%s\n", strfail);
 	}
 	i = -1;
 	printf("\n");
