@@ -6,13 +6,13 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/17 11:30:51 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/17 17:37:26 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 ASM			=	nasm
 
-ASM_FLAGS	=	-f elf64
+ASM_FLAGS	=	-f macho64
 
 CC			=	gcc
 

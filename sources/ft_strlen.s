@@ -1,8 +1,8 @@
-			global		ft_strlen
+			global		_ft_strlen
 
 			section		.text
 ;size_t		ft_strlen(const char *str);
-ft_strlen:	xor			rax, rax
+_ft_strlen:	xor			rax, rax
 			jmp			test
 
 test:		cmp	byte	[rdi + rax], 0

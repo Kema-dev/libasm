@@ -1,8 +1,8 @@
-			global		ft_strcpy
+			global		_ft_strcpy
 
 			section		.text
 ;char		*ft_strcpy(char *dst, const char *src);
-ft_strcpy:	xor 		rcx, rcx
+_ft_strcpy:	xor 		rcx, rcx
 			jmp			test
 
 test:		cmp	byte	[rsi + rcx], 0
