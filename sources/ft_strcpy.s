@@ -1,6 +1,7 @@
 			global		ft_strcpy
 
 			section		.text
+;char		*ft_strcpy(char *dst, const char *src);
 ft_strcpy:	xor 		rcx, rcx
 			jmp			test
 

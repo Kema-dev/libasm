@@ -6,14 +6,12 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 10:35:44 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 11:29:06 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "includes/libasm.h"
-
-//uso open to read big vars
 
 int	main(void)
 {
@@ -79,12 +77,11 @@ int	main(void)
 	while (lencpy[++i])
 	{
 	printf("Test with \"%s\" : ", lencpy[i]);
-	if (strcmp(strcpy(dest, lencpy[i]), ft_strcpy(dest, lencpy[i])) == 0)
+	if (strcmp(strcpy(dest1, lencpy[i]), ft_strcpy(dest1, lencpy[i])) == 0)
 		printf("\033[0;32mok!\n\033[0;37m");
 	else
 		printf("\033[0;31mfail!\n\033[0;37m");
 	}
-	free (dest);
 	i = -1;
 	printf("\n");
 

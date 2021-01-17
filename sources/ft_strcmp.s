@@ -1,6 +1,7 @@
 			global		ft_strcmp
 
 			section		.text
+;int		ft_strcmp(const char *s1, const char *s2);
 ft_strcmp:	xor 		rax, rax
 			xor			rcx, rcx
 			jmp			loop
