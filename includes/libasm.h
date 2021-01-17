@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 20:38:57 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 08:08:16 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 10:28:30 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-//#include <fcntl.h>
+#include <fcntl.h>
 
 size_t		ft_strlen(const char *str);
 char		*ft_strcpy(char *dst, const char *src);
