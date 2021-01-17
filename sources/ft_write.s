@@ -1,15 +1,18 @@
-			global		_ft_write
+segment .text
+	global _ft_write
 
-			section		.text
-;ssize_t	ft_write(int fd, const void *buf, size_t count);
-_ft_write:	push		r8
-			mov			rax, 0x2000004
-			syscall
-			jc			error
-			jmp			stop
+; ft_write (rdi, rsi, rdx)
+_ft_write:
+	mov r8, rdx				; save rdx = len in r8
+	mov rax, 0x2000004		; set call to write
+    syscall					; call rax (write)
+		jc exit_error		; if doesn't work, write set flags carry to 1 so jmp exit error
+	jmp exit				; jump exit
 
-error:		mov			rax, -1
-			ret
+exit_error:
+	mov rax, -1				; set return to -1
+	ret						; return
 
-stop:		pop 		rax
-			ret
+exit:
+	mov rax, r8				; set previous value of rdx save in r8, in return value
+	ret						; return 
