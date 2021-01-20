@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:15:21 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 14:46:42 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 18:04:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 int	test_strlen(t_params *param)
 {
 	ssize_t	i;
+	char	*args1[7] = {NULL, "", "1", "12345", "12345\07890", "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"};
 
 	i = -1;
-	while (param->args1[++i])
+	printf("\n\nTesting strlen:\n\n");
+	while (++i < 6)
 	{
-		printf("Test with \"%s\" : ", param->args1[i]);
-		param->ret_o = strlen(param->args1[i]);
+		printf("Test with \"%s\" : ", args1[i]);
+		param->ret_o = strlen(args1[i]);
 		param->err_o = errno;
-		param->ret_u = ft_strlen(param->args1[i]);
+		param->ret_u = ft_strlen(args1[i]);
 		param->err_u = errno;
 		if (param->ret_o == param->ret_u)
 			printf("%s ", param->strok);

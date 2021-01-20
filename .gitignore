@@ -20,6 +20,4 @@
 *.out
 *.app
 
-libasmback/
 libasmTester/
-libasmTester

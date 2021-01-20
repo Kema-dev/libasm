@@ -1,32 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strcmp.c                                      :+:      :+:    :+:   */
+/*   test_read.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/20 14:50:44 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 18:03:00 by jjourdan         ###   ########lyon.fr   */
+/*   Created: 2021/01/20 16:00:14 by jjourdan          #+#    #+#             */
+/*   Updated: 2021/01/20 18:02:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/kemasm.h"
 #include "../includes/libasm.h"
 
-int	test_strcmp(t_params *param)
+int	test_read(t_params *param)
 {
+	char	*file[12] = {"", "", "", "12345", "12345", "12345", "12345", "12345", "empty", "empty", "empty", "main.c"};
+	int		buf_size[12] = {-1, 0, 5, -1, 0, 3, 5, 8, -1, 0, 5, 400};
 	ssize_t	i;
-	char	*args2[15] = {"", "", "1", "", "1", "1", "12345", "12345", "12340", "12345", ""};
 
 	i = -1;
-	printf("\n\nTesting strcmp:\n\n");
-	while (++i < 11)
+	printf("Testing read:\n\n");
+	param->fd = creat("empty", O_WRONLY);
+	close(param->fd);
+	param->fd = creat("empty", O_WRONLY);
+	write (param->fd, "12345", 5);
+	close(param->fd);
+	while (++i < 12)
 	{
-		printf("Test with \"%s\" and \"%s\" : ", args2[i], args2[i]);
-		param->ret_o = strcmp(args2[i], args2[i + 1]);
+		printf("Test with \"%s\" file and %d buffer size: ", file[i], buf_size[i]);
+		param->fd = open(file[i], O_RDONLY);
+		param->ret_o = read(param->fd, param->str_o, buf_size[i]);
 		param->err_o = errno;
-		param->ret_u = ft_strcmp(args2[i], args2[i + 1]);
+		close(param->fd);
+		param->fd = open(file[i], O_RDONLY);
+		param->ret_u = ft_read(param->fd, param->str_u, buf_size[i]);
 		param->err_u = errno;
+		close(param->fd);
+		if (strcmp(param->str_o, param->str_u) == 0)
+			printf("%s ", param->strok);
+		else
+			printf("%s you returned %s, expected %s", param->strfail, param->str_u, param->str_o);
 		if (param->ret_o == param->ret_u)
 			printf("%s ", param->strok);
 		else

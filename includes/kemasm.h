@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:03:15 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 15:20:03 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 17:54:07 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ typedef struct		s_params
 	char	*strfail;
 	char	*errok;
 	char	*errfail;
-	char	**args1;
-	char	**args2;
-	char	*buf_o;
-	char	*buf_u;
 	char	*str_o;
 	char	*str_u;
 	int		fd;
@@ -36,10 +32,13 @@ typedef struct		s_params
 }					t_params;
 
 int					struct_init(t_params *param);
+int					struct_reset(t_params *param);
 int					free_exit(t_params *param);
 int					test_strlen(t_params *param);
 int					test_strcpy(t_params *param);
 int					test_strcmp(t_params *param);
 int					test_strdup(t_params *param);
+int					test_read(t_params *param);
+int					test_write(t_params *param);
 
 #endif

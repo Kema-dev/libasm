@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 15:05:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 15:16:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 18:05:12 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 int	test_strdup(t_params *param)
 {
 	ssize_t	i;
+	char	*args1[7] = {NULL, "", "1", "12345", "12345\07890", "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"};
 
 	i = -1;
-	while (param->args1[++i + 1])
+	printf("\n\nTesting strdup:\n\n");
+	while (++i < 6)
 	{
-		printf("Test with \"%s\" and \"%s\" : ", param->args1[i], param->args1[i]);
+		printf("Test with \"%s\" and \"%s\" : ", args1[i], args1[i]);
 		free(param->str_o);
 		free(param->str_u);
-		if (!(param->str_o = strdup(param->args1[i], param->args1[i + 1])))
+		if (!(param->str_o = strdup(args1[i])))
 			return (free_exit(param));
 		param->err_o = errno;
-		if (!(param->str_u = ft_strdup(param->args1[i], param->args1[i + 1])))
+		if (!(param->str_u = ft_strdup(args1[i])))
 			return (free_exit(param));
 		param->err_u = errno;
 		if (strcmp(param->str_o, param->str_u) == 0)

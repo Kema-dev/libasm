@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/20 13:45:26 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/20 17:39:40 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,16 @@ SRCS		=	ft_strlen.s\
 				ft_read.s \
 				ft_write.s
 
-TESTER		=	main.c \
-				struct_manip.c
+TESTER		=	free_exit.c \
+				main.c \
+				struct_init.c \
+				struct_reset.c \
+				test_read.c \
+				test_strcmp.c \
+				test_strcpy.c \
+				test_strdup.c \
+				test_strlen.c \
+				test_write.c
 
 TESTER_FULL	=	$(addprefix ${TESTER_DIR}, ${TESTER})
 
@@ -62,6 +70,7 @@ moulinette:		all
 				$(CC) $(MOUL_FLAGS) -I $(INC_DIR) $(TESTER_FULL) $(NAME) -o $(MOUL_OUT)
 				printf "\033c"
 				./moulinette.out
+				rm -f "empty" "12345" "file_o" "file_u" 
 
 clean:
 				$(RM) $(OBJS)
