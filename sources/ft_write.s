@@ -5,8 +5,8 @@
 _ft_write:	mov			r8, rdx
 			mov			rax, 0x2000004
 			syscall
-			jc			error
-			jmp			stop
+			jnc			stop
+			jmp			error
 
 error:		mov			rax, -1
 			ret

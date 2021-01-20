@@ -6,11 +6,12 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 12:49:24 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 15:42:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <errno.h>
 #include "includes/libasm.h"
 
 void test_read()
@@ -44,9 +45,9 @@ void test_read()
 	buf2[400] = 0;
 	close(fd);
 	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
-		printf("%s\n", strok);
+		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
 	else
-		printf("%s\n", strfail);
+		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
 	
 	printf("Test with \"%s\" : ", "an empty file");
 	fd = open("empty", O_RDONLY);
@@ -58,9 +59,9 @@ void test_read()
 	buf2[400] = 0;
 	close(fd);
 	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
-		printf("%s\n", strok);
+		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
 	else
-		printf("%s\n", strfail);
+		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
 
 	printf("\n");
 	free(buf1);
@@ -74,7 +75,8 @@ void test_write()
 	char	*buf1;
 	char	*buf2;
 	int		fd;
-	int		ret;
+	int		ret1;
+	int		ret2;
 
 	if (!(buf1 = calloc(401, sizeof(char))))
 		return ;
@@ -87,21 +89,37 @@ void test_write()
 	strok = "\033[0;32mok!\033[0;37m";
 	strfail = "\033[0;31mfail!\033[0;37m";
 
+	printf("Test with \"%s\" : ", "12345");
 	fd = open("file1", O_WRONLY);
-	write(fd, "12345", 5);
-	ret = read(fd, buf1, 400);
+	ret1 = write(fd, "12345", 5);
+	read(fd, buf1, 400);
 	buf1[400] = 0;
 	close(fd);
 	fd = open("file2", O_WRONLY);
-	ft_write(fd, "12345", 5);
-	ret = read(fd, buf1, 400);
+	ret2 = ft_write(fd, "12345", 5);
+	read(fd, buf1, 400);
 	buf1[400] = 0;
 	close(fd);
-	printf("Test with \"%s\" : ", "12345");
-	if (strcmp(buf1, buf2) == 0)
-		printf("%s\n", strok);
+	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
+		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
 	else
-		printf("%s\n", strfail);
+		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
+	
+	printf("Test with \"%s\" : ", "a NULL input");
+	fd = open("", O_WRONLY);
+	ret1 = write(fd, "12345", 5);
+	read(fd, buf1, 400);
+	buf1[400] = 0;
+	close(fd);
+	fd = open("", O_WRONLY);
+	ret2 = ft_write(fd, "12345", 5);
+	read(fd, buf1, 400);
+	buf1[400] = 0;
+	close(fd);
+	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
+		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
+	else
+		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
 
 	free(buf1);
 	free(buf2);
@@ -116,10 +134,16 @@ int	main(void)
 	char	**cmp;
 	char	*strok;
 	char	*strfail;
+	char	*errok;
+	char	*errfail;
+	int		err1;
+	int		err2;
 
 	i = -1;
-	strok = "\033[0;32mok!\033[0;37m";
-	strfail = "\033[0;31mfail!\033[0;37m";
+	strok = "\033[0;32mcheck ok!\033[0;37m";
+	strfail = "\033[0;31mcheck fail!\033[0;37m";
+	errok = "\033[0;32merrno ok!\033[0;37m";
+	errfail = "\033[0;31merrno fail!\033[0;37m";
 	if (!(dest1 = calloc(100, sizeof(char))))
 		return (-1);
 	if (!(dest2 = calloc(100, sizeof(char))))
@@ -140,33 +164,43 @@ int	main(void)
 		free(lencpy);
 		return (-1);
 	}
-	lencpy[0] = "0";
-	lencpy[1] = "";
-	lencpy[2] = "2";
-	lencpy[3] = "";
+	lencpy[0] = "";
+	lencpy[1] = "1";
+	lencpy[2] = "12345";
+	lencpy[3] = "1234567890";
 	lencpy[4] = "4";
 	lencpy[5] = "5";
 	lencpy[6] = NULL;
-	cmp[0] = "1";
-	cmp[1] = "1";
-	cmp[2] = "2";
-	cmp[3] = "3";
-	cmp[4] = "4";
-	cmp[5] = "5";
-	cmp[6] = "6";
-	cmp[7] = "7";
-	cmp[8] = "8";
-	cmp[9] = "9";
+	cmp[0] = "";
+	cmp[1] = "";
+	cmp[2] = "1";
+	cmp[3] = "1";
+	cmp[4] = "2";
+	cmp[5] = "1";
+	cmp[6] = "111";
+	cmp[7] = "111";
+	cmp[8] = "112";
+	cmp[9] = "";
 	cmp[10] = NULL;
 
+	system("clear");
+	printf("\033[0;37m\nStarting tests !\n");
 	printf("\n\nTesting strlen:\n\n");
 	while (lencpy[++i])
 	{
 		printf("Test with \"%s\" : ", lencpy[i]);
 		if ((ft_strlen(lencpy[i]) - strlen(lencpy[i])) == 0)
-			printf("%s\n", strok);
+			printf("%s ", strok);
 		else
-			printf("%s\n", strfail);
+			printf("%s ", strfail);
+		strlen(lencpy[i]);
+		err1 = errno;
+		ft_strlen(lencpy[i]);
+		err2 = errno;
+		if (err1 == err2)
+			printf("%s\n", errok);
+		else
+			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
 	}
 	i = -1;
 	printf("\n");
@@ -176,9 +210,17 @@ int	main(void)
 	{
 		printf("Test with \"%s\" : ", lencpy[i]);
 		if (strcmp(strcpy(dest1, lencpy[i]), ft_strcpy(dest1, lencpy[i])) == 0)
-			printf("%s\n", strok);
+			printf("%s ", strok);
 		else
-			printf("%s\n", strfail);
+			printf("%s ", strfail);
+		strcpy(dest1, lencpy[i]);
+		err1 = errno;
+		ft_strcpy(dest1, lencpy[i]);
+		err2 = errno;
+		if (err1 == err2)
+			printf("%s\n", errok);
+		else
+			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
 	}
 	i = -1;
 	printf("\n");
@@ -188,10 +230,17 @@ int	main(void)
 	{
 		printf("Test with \"%s\" and \"%s\" : ", cmp[i], cmp[i + 1]);
 		if ((ft_strcmp(cmp[i], cmp[i + 1]) - strcmp(cmp[i], cmp[i + 1])) == 0)
-			printf("%s\n", strok);
+			printf("%s ", strok);
 		else
-			printf("%s\n", strfail);
-		i++;
+			printf("%s ", strfail);
+		strcmp(cmp[i], cmp[i + 1]);
+		err1 = errno;
+		ft_strcmp(cmp[i], cmp[i + 1]);
+		err2 = errno;
+		if (err1 == err2)
+			printf("%s\n", errok);
+		else
+			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
 	}
 	free (cmp);
 	i = -1;
@@ -201,22 +250,33 @@ int	main(void)
 	while (lencpy[++i])
 	{
 		printf("Test with \"%s\" : ", lencpy[i]);
+		free(dest1);
+		free(dest2);
 		dest1 = strdup(lencpy[i]);
+		err1 = errno;
 		dest2 = ft_strdup(lencpy[i]);
+		err2 = errno;
 		if (strcmp(dest1, dest2) == 0)
-			printf("%s\n", strok);
+			printf("%s ", strok);
 		else
-			printf("%s\n", strfail);
+			printf("%s ", strfail);
+		if (err1 == err2)
+			printf("%s\n", errok);
+		else
+			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
 	}
 	i = -1;
 	printf("\n");
 
 	free(dest1);
 	free(dest2);
-	free (lencpy);
+	free(lencpy);
 
 	test_read();
 	test_write();
 
+	printf("\n\nAll tests done !\n");
 	return (0);
 }
+
+//	printf("errno : %s\n", strerror(errno));

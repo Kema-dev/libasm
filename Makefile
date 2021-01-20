@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/18 15:59:39 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/20 14:49:16 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC			=	gcc
 
 CC_FLAGS	=	-Wall -Wextra -Werror
 
-MOUL_FLAGS	=	-Wall -Wextra -fsanitize=address
+MOUL_FLAGS	=	-Wall -Wextra #-fsanitize=address
 
 INCLUDES	=	libasm.h
 
@@ -49,7 +49,7 @@ OBJS		=	$(SRCS_FULL:.s=.o)
 all:			$(NAME)
 
 $(NAME): 		$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+				ar rcs $(NAME) $?
 
 moulinette:		all
 				$(CC) $(MOUL_FLAGS) -I $(INC_DIR) main.c $(NAME) -o $(MOUL_OUT)
