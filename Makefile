@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/17 17:37:26 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/18 15:59:39 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,9 @@ SRCS_DIR	=	sources/
 SRCS		=	ft_strlen.s\
 				ft_strcpy.s \
 				ft_strcmp.s \
-				ft_strdup.s
-				#ft_write.s \
-				#ft_read.s \
+				ft_strdup.s \
+				ft_read.s \
+				ft_write.s
 
 SRCS_FULL	=	$(addprefix ${SRCS_DIR}, ${SRCS})
 

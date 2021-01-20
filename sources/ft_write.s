@@ -2,7 +2,7 @@
 
 			section		.text
 ;ssize_t	ft_write(int fd, const void *buf, size_t count);
-_ft_write:	push		r8
+_ft_write:	mov			r8, rdx
 			mov			rax, 0x2000004
 			syscall
 			jc			error
@@ -11,5 +11,5 @@ _ft_write:	push		r8
 error:		mov			rax, -1
 			ret
 
-stop:		pop 		rax
+stop:		mov 		rax, r8
 			ret

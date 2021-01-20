@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/17 17:17:31 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 10:29:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void test_read()
 	int		ret1;
 	int		ret2;
 
-	if (!(buf1 = calloc(100, sizeof(char))))
+	if (!(buf1 = calloc(401, sizeof(char))))
 		return ;
-	if (!(buf2 = calloc(100, sizeof(char))))
+	if (!(buf2 = calloc(401, sizeof(char))))
 	{
 		free(buf1);
 		return ;
@@ -33,6 +33,8 @@ void test_read()
 	printf("Testing read:\n\n");
 	strok = "\033[0;32mok!\033[0;37m";
 	strfail = "\033[0;31mfail!\033[0;37m";
+
+	printf("Test with \"%s\" : ", "main.c");
 	fd = open("main.c", O_RDONLY);
 	ret1 = read(fd, buf1, 400);
 	buf1[400] = 0;
@@ -41,20 +43,68 @@ void test_read()
 	ret2 = ft_read(fd, buf2, 400);
 	buf2[400] = 0;
 	close(fd);
-
-	printf("Test with \"%s\" : ", "main.c");
+	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
+		printf("%s\n", strok);
+	else
+		printf("%s\n", strfail);
+	
+	printf("Test with \"%s\" : ", "an empty file");
+	fd = open("empty", O_RDONLY);
+	ret1 = read(fd, buf1, 400);
+	buf1[400] = 0;
+	close(fd);
+	fd = open("empty", O_RDONLY);
+	ret2 = ft_read(fd, buf2, 400);
+	buf2[400] = 0;
+	close(fd);
 	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
 		printf("%s\n", strok);
 	else
 		printf("%s\n", strfail);
 
+	printf("\n");
 	free(buf1);
 	free(buf2);
 }
 
 void test_write()
 {
-	
+	char	*strok;
+	char	*strfail;
+	char	*buf1;
+	char	*buf2;
+	int		fd;
+	int		ret;
+
+	if (!(buf1 = calloc(401, sizeof(char))))
+		return ;
+	if (!(buf2 = calloc(401, sizeof(char))))
+	{
+		free(buf1);
+		return ;
+	}
+	printf("Testing write:\n\n");
+	strok = "\033[0;32mok!\033[0;37m";
+	strfail = "\033[0;31mfail!\033[0;37m";
+
+	fd = open("file1", O_WRONLY);
+	write(fd, "12345", 5);
+	ret = read(fd, buf1, 400);
+	buf1[400] = 0;
+	close(fd);
+	fd = open("file2", O_WRONLY);
+	ft_write(fd, "12345", 5);
+	ret = read(fd, buf1, 400);
+	buf1[400] = 0;
+	close(fd);
+	printf("Test with \"%s\" : ", "12345");
+	if (strcmp(buf1, buf2) == 0)
+		printf("%s\n", strok);
+	else
+		printf("%s\n", strfail);
+
+	free(buf1);
+	free(buf2);
 }
 
 int	main(void)
@@ -165,8 +215,8 @@ int	main(void)
 	free(dest2);
 	free (lencpy);
 
-	//test_write();
 	test_read();
+	test_write();
 
 	return (0);
 }
