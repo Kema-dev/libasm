@@ -1,34 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_manip.c                                     :+:      :+:    :+:   */
+/*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:16:26 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 13:43:11 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 15:24:17 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm.h"
+#include "../includes/kemasm.h"
+#include "../includes/libasm.h"
 
-int	struct_init(t_params param)
+int	struct_init(t_params *param)
 {
+	ssize_t	i;
+
+	i = -1;
 	param->strok = "\033[0;32mok!\033[0;37m";
 	param->strfail = "\033[0;31mfail!\033[0;37m";
 	param->errok = "\033[0;32merrno ok!\033[0;37m";
 	param->errfail = "\033[0;31merrno fail!\033[0;37m";
-	if (!(param->buf1 = calloc(400, sizeof(char))))
-		return (-1);
-	if (!(param->buf2 = calloc(400, sizeof(char))))
-	{
-		free(param->buf1);
-		return (-1);
-	}
+	if (!(param->buf_o = calloc(400, sizeof(char))))
+		return (free_exit(param));
+	if (!(param->buf_u = calloc(400, sizeof(char))))
+		return (free_exit(param));
+	if (!(param->str_o = calloc(10, sizeof(char))))
+		return (free_exit(param));
+	if (!(param->str_u = calloc(10, sizeof(char))))
+		return (free_exit(param));
+	if (!(param->args1 = calloc(10, sizeof(char *))))
+		return (free_exit(param));
+	if (!(param->args2 = calloc(10, sizeof(char *))))
+		return (free_exit(param));
+
+	// ! define param->args1/2[i] values "while(arg[++i])"
+
 	param->fd = 0;
-	param->ret1 = 0;
-	param->ret2 = 0;
-	param->err1 = 0;
-	param->err2 = 0;
+	param->ret_o = 0;
+	param->ret_u = 0;
+	param->err_o = 0;
+	param->err_u = 0;
+	param->error_occured = 0;
 	return (0);
 }
