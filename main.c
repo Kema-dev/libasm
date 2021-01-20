@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:58:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 15:42:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 17:10:08 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ void test_read()
 	char	*strfail;
 	char	*buf1;
 	char	*buf2;
+	char	*errok;
+	char	*errfail;
 	int		fd;
 	int		ret1;
 	int		ret2;
+	int		err1;
+	int		err2;
 
 	if (!(buf1 = calloc(401, sizeof(char))))
 		return ;
@@ -32,6 +36,8 @@ void test_read()
 		return ;
 	}
 	printf("Testing read:\n\n");
+	errok = "\033[0;32merrno ok!\033[0;37m";
+	errfail = "\033[0;31merrno fail!\033[0;37m";
 	strok = "\033[0;32mok!\033[0;37m";
 	strfail = "\033[0;31mfail!\033[0;37m";
 
@@ -48,21 +54,25 @@ void test_read()
 		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
 	else
 		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
-	
 	printf("Test with \"%s\" : ", "an empty file");
 	fd = open("empty", O_RDONLY);
 	ret1 = read(fd, buf1, 400);
+	err1 = errno;
 	buf1[400] = 0;
 	close(fd);
 	fd = open("empty", O_RDONLY);
 	ret2 = ft_read(fd, buf2, 400);
+	err2 = errno;
 	buf2[400] = 0;
 	close(fd);
 	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
-		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
+		printf("%s ret = %d vs %d ", strok, ret1, ret2);
 	else
-		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
-
+		printf("%s ret = %d vs %d ", strfail, ret1, ret2);
+	if (err1 == err2)
+		printf("%s\n", errok);
+	else
+		printf("%s code (%d) %s vs code (%d) %s\n", errfail, err1, strerror(err1), err2, strerror(err2));
 	printf("\n");
 	free(buf1);
 	free(buf2);
@@ -74,9 +84,13 @@ void test_write()
 	char	*strfail;
 	char	*buf1;
 	char	*buf2;
+	char	*errok;
+	char	*errfail;
 	int		fd;
 	int		ret1;
 	int		ret2;
+	int		err1;
+	int		err2;
 
 	if (!(buf1 = calloc(401, sizeof(char))))
 		return ;
@@ -86,6 +100,8 @@ void test_write()
 		return ;
 	}
 	printf("Testing write:\n\n");
+	errok = "\033[0;32merrno ok!\033[0;37m";
+	errfail = "\033[0;31merrno fail!\033[0;37m";
 	strok = "\033[0;32mok!\033[0;37m";
 	strfail = "\033[0;31mfail!\033[0;37m";
 
@@ -108,19 +124,24 @@ void test_write()
 	printf("Test with \"%s\" : ", "a NULL input");
 	fd = open("", O_WRONLY);
 	ret1 = write(fd, "12345", 5);
+	err1 = errno;
 	read(fd, buf1, 400);
 	buf1[400] = 0;
 	close(fd);
 	fd = open("", O_WRONLY);
 	ret2 = ft_write(fd, "12345", 5);
+	err2 = errno;
 	read(fd, buf1, 400);
 	buf1[400] = 0;
 	close(fd);
 	if ((strcmp(buf1, buf2) == 0) && (ret1 == ret2))
-		printf("%s ret = %d vs %d\n", strok, ret1, ret2);
+		printf("%s ret = %d vs %d ", strok, ret1, ret2);
 	else
-		printf("%s ret = %d vs %d\n", strfail, ret1, ret2);
-
+		printf("%s ret = %d vs %d ", strfail, ret1, ret2);
+	if (err1 == err2)
+			printf("%s\n", errok);
+		else
+			printf("%s code (%d) %s vs code (%d) %s\n", errfail, err1, strerror(err1), err2, strerror(err2));
 	free(buf1);
 	free(buf2);
 }
@@ -192,7 +213,7 @@ int	main(void)
 		if ((ft_strlen(lencpy[i]) - strlen(lencpy[i])) == 0)
 			printf("%s ", strok);
 		else
-			printf("%s ", strfail);
+			printf("%s return %d vs %d ", strfail, strlen(lencpy[i]), ft_strlen(lencpy[i]));
 		strlen(lencpy[i]);
 		err1 = errno;
 		ft_strlen(lencpy[i]);
@@ -200,7 +221,7 @@ int	main(void)
 		if (err1 == err2)
 			printf("%s\n", errok);
 		else
-			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
+			printf("%s code (%d) %s vs code (%d) %s\n", errfail, err1, strerror(err1), err2, strerror(err2));
 	}
 	i = -1;
 	printf("\n");
@@ -212,7 +233,7 @@ int	main(void)
 		if (strcmp(strcpy(dest1, lencpy[i]), ft_strcpy(dest1, lencpy[i])) == 0)
 			printf("%s ", strok);
 		else
-			printf("%s ", strfail);
+			printf("%s return %d vs %d ", strfail, strcpy(dest1, lencpy[i]), ft_strcpy(dest1, lencpy[i]));
 		strcpy(dest1, lencpy[i]);
 		err1 = errno;
 		ft_strcpy(dest1, lencpy[i]);
@@ -220,7 +241,7 @@ int	main(void)
 		if (err1 == err2)
 			printf("%s\n", errok);
 		else
-			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
+			printf("%s code (%d) %s vs code (%d) %s\n", errfail, err1, strerror(err1), err2, strerror(err2));
 	}
 	i = -1;
 	printf("\n");
@@ -232,7 +253,7 @@ int	main(void)
 		if ((ft_strcmp(cmp[i], cmp[i + 1]) - strcmp(cmp[i], cmp[i + 1])) == 0)
 			printf("%s ", strok);
 		else
-			printf("%s ", strfail);
+			printf("%s return %d vs %d ", strfail, strcmp(cmp[i], cmp[i + 1]), ft_strcmp(cmp[i], cmp[i + 1]));
 		strcmp(cmp[i], cmp[i + 1]);
 		err1 = errno;
 		ft_strcmp(cmp[i], cmp[i + 1]);
@@ -240,7 +261,7 @@ int	main(void)
 		if (err1 == err2)
 			printf("%s\n", errok);
 		else
-			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
+			printf("%s code (%d) %s vs code (%d) %s\n", errfail, err1, strerror(err1), err2, strerror(err2));
 	}
 	free (cmp);
 	i = -1;
@@ -259,11 +280,11 @@ int	main(void)
 		if (strcmp(dest1, dest2) == 0)
 			printf("%s ", strok);
 		else
-			printf("%s ", strfail);
+			printf("%s return %s vs %s ", strfail, dest1, dest2);
 		if (err1 == err2)
 			printf("%s\n", errok);
 		else
-			printf("%s %s vs %s\n", errfail, strerror(err1), strerror(err2));
+			printf("%s code (%d) %s vs code (%d) %s\n", errfail, err1, strerror(err1), err2, strerror(err2));
 	}
 	i = -1;
 	printf("\n");
@@ -278,5 +299,3 @@ int	main(void)
 	printf("\n\nAll tests done !\n");
 	return (0);
 }
-
-//	printf("errno : %s\n", strerror(errno));
