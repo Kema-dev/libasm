@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/20 14:49:16 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/20 13:45:26 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,19 @@ MOUL_OUT	=	moulinette.out
 
 SRCS_DIR	=	sources/
 
+TESTER_DIR	=	kemasm/
+
 SRCS		=	ft_strlen.s\
 				ft_strcpy.s \
 				ft_strcmp.s \
 				ft_strdup.s \
 				ft_read.s \
 				ft_write.s
+
+TESTER		=	main.c \
+				struct_manip.c
+
+TESTER_FULL	=	$(addprefix ${TESTER_DIR}, ${TESTER})
 
 SRCS_FULL	=	$(addprefix ${SRCS_DIR}, ${SRCS})
 
@@ -49,10 +56,11 @@ OBJS		=	$(SRCS_FULL:.s=.o)
 all:			$(NAME)
 
 $(NAME): 		$(OBJS)
-				ar rcs $(NAME) $?
+				ar rc $(NAME) $?
 
 moulinette:		all
-				$(CC) $(MOUL_FLAGS) -I $(INC_DIR) main.c $(NAME) -o $(MOUL_OUT)
+				$(CC) $(MOUL_FLAGS) -I $(INC_DIR) $(TESTER_FULL) $(NAME) -o $(MOUL_OUT)
+				printf "\033c"
 				./moulinette.out
 
 clean:

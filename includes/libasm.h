@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 20:38:57 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/18 15:59:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 13:42:26 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,28 @@
 
 #include <sys/types.h>
 #include <stdio.h>
+#include <errno.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+
+typedef struct		s_params
+{
+	char	*strok;
+	char	*strfail;
+	char	*errok;
+	char	*errfail;
+	char	*buf1;
+	char	*buf2;
+	char	*str1;
+	char	*str2;
+	int		fd;
+	int		ret1;
+	int		ret2;
+	int		err1;
+	int		err2;
+}					*t_params;
 
 ssize_t		ft_read(int fd, void *buf, size_t count);
 ssize_t		ft_write(int fd, const void *buf, size_t count);
