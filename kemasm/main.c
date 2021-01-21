@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 12:59:36 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:28:12 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 14:35:08 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(void)
 	if (test_write(param) != 0)
 		return (free_exit(param));
 
-	printf("\n\nAll tests done !\nKeep in mind that it doesn't check with any \"NULL\" value but with \"\"\n");
+	printf("\n\nAll tests done !\nKeep in mind that it doesn't check with any \"NULL\" value but with \"\" and that just a few errno values are tested\n");
 	param->error_occured = 0;
 	free_exit(param);
 	return (0);

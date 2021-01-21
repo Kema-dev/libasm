@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:00:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:23:18 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 12:46:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	test_read(t_params *param)
 	printf("\n\nTesting read:\n\n");
 	param->fd = creat("empty", O_WRONLY);
 	close(param->fd);
-	param->fd = creat("empty", O_WRONLY);
+	param->fd = creat("12345", O_WRONLY);
 	write(param->fd, "12345", 5);
 	close(param->fd);
 	while (++i < 12)
@@ -40,15 +40,17 @@ int	test_read(t_params *param)
 		if (strcmp(param->str_o, param->str_u) == 0)
 			printf("%s ", param->strok);
 		else
-			printf("%s you returned %s, expected %s", param->strfail, param->str_u, param->str_o);
+			printf("%s you returned %s, expected %s ", param->strfail, param->str_u, param->str_o);
 		if (param->ret_o == param->ret_u)
 			printf("%s ", param->strok);
 		else
-			printf("%s you returned %d, expected %d", param->strfail, param->ret_u, param->ret_o);
+			printf("%s you returned %d, expected %d ", param->strfail, param->ret_u, param->ret_o);
 		if (param->err_o == param->err_u)
 			printf("%s\n", param->errok);
 		else
 			printf("%s your errno code is (%d) %s, expected (%d) %s\n", param->errfail, param->err_u, strerror(param->err_u), param->err_o, strerror(param->err_o));
 	}
+	remove("empty");
+	remove("12345");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 15:05:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:23:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 12:31:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	test_strdup(t_params *param)
 		if (strcmp(param->str_o, param->str_u) == 0)
 			printf("%s ", param->strok);
 		else
-			printf("%s you returned %s, expected %s", param->strfail, param->str_u, param->str_o);
+			printf("%s you returned %s, expected %s ", param->strfail, param->str_u, param->str_o);
 		if (param->err_o == param->err_u)
 			printf("%s\n", param->errok);
 		else

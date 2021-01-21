@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:15:21 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:23:42 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 12:53:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	test_strlen(t_params *param)
 		if (param->ret_o == param->ret_u)
 			printf("%s ", param->strok);
 		else
-			printf("%s you returned %d, expected %d", param->strfail, param->ret_u, param->ret_o);
+			printf("%s you returned %d, expected %d ", param->strfail, param->ret_u, param->ret_o);
 		if (param->err_o == param->err_u)
 			printf("%s\n", param->errok);
 		else

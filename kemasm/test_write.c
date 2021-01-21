@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:44:59 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:23:19 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 12:46:02 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	test_write(t_params *param)
 {
 	char	*file_o[13] = {"", "", "", "", "", "", "", "", "file_o", "file_o", "file_o", "file_o", "file_o"};
 	char	*file_u[13] = {"", "", "", "", "", "", "", "", "file_u", "file_u", "file_u", "file_u", "file_u"};
-	char	*input[13] = {"", "", "", "12345", "12345", "12345", "12345", "12345", "12345", "12345" "12345", "12345", "12345"};
+	char	*input[13] = {"", "", "", "12345", "12345", "12345", "12345", "12345", "12345", "12345" "12345", "12345", "12345", ""};
 	int		buf_size[13] = {-1, 0, 5, -1, 0, 3, 5, 8, -1, 0, 3, 5, 8};
 	ssize_t	i;
 
@@ -26,26 +26,24 @@ int	test_write(t_params *param)
 	while (++i < 13)
 	{
 		printf("Test with \"%s\" file and buffer size %d with \"%s\" input : ", file_o[i], buf_size[i], input[i]);
-		param->fd = creat(file_o[i], O_WRONLY);
+		param->fd = open(file_o[i], O_CREAT, S_IRWXO);
 		param->ret_o = write(param->fd, input[i], buf_size[i]);
 		param->err_o = errno;
-		close(param->fd);
-		param->fd = open(file_o[i], O_RDONLY);
 		read(param->fd, param->str_o, 10);
-		param->fd = creat(file_u[i], O_WRONLY);
+		close(param->fd);
+		param->fd = open(file_u[i], O_CREAT, S_IRWXO);
 		param->ret_u = ft_write(param->fd, input[i], buf_size[i]);
 		param->err_u = errno;
-		close(param->fd);
-		param->fd = open(file_u[i], O_RDONLY);
 		read(param->fd, param->str_u, 10);
+		close(param->fd);
 		if (strcmp(param->str_o, param->str_u) == 0)
 			printf("%s ", param->strok);
 		else
-			printf("%s you returned %s, expected %s", param->strfail, param->str_u, param->str_o);
+			printf("%s you returned %s, expected %s ", param->strfail, param->str_u, param->str_o);
 		if (param->ret_o == param->ret_u)
 			printf("%s ", param->strok);
 		else
-			printf("%s you returned %d, expected %d", param->strfail, param->ret_u, param->ret_o);
+			printf("%s you returned %d, expected %d ", param->strfail, param->ret_u, param->ret_o);
 		if (param->err_o == param->err_u)
 			printf("%s\n", param->errok);
 		else
