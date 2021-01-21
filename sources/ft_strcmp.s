@@ -20,5 +20,9 @@ test:		movzx		r8, BYTE [rdi]
 end_equal:	ret
 
 end:		sub			r8, r9
-			mov			rax, r8
+			jl			less
+			mov			rax, 1
+			ret
+
+less:		mov			rax, -1
 			ret
