@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:00:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 11:21:16 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 12:23:18 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	test_read(t_params *param)
 	close(param->fd);
 	while (++i < 12)
 	{
-		printf("Test with \"%s\" file and %d buffer size: ", file[i], buf_size[i]);
+		printf("Test with \"%s\" file and buffer size %d: ", file[i], buf_size[i]);
 		param->fd = open(file[i], O_RDONLY);
 		param->ret_o = read(param->fd, param->str_o, buf_size[i]);
 		param->err_o = errno;
