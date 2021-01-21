@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:00:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:46:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 16:30:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	test_read(t_params *param)
 
 	i = -1;
 	printf("\n\nTesting read:\n\n");
-	param->fd = creat("empty", O_WRONLY);
+	param->fd = open("empty", O_CREAT, S_IRWXO);
 	close(param->fd);
-	param->fd = creat("12345", O_WRONLY);
+	param->fd = open("12345", O_CREAT, S_IRWXO);
 	write(param->fd, "12345", 5);
 	close(param->fd);
 	while (++i < 12)
