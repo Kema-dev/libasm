@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:44:59 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 18:01:07 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 11:28:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	test_write(t_params *param)
 	ssize_t	i;
 
 	i = -1;
-	printf("Testing write:\n\n");
+	printf("\n\nTesting write:\n\n");
 	while (++i < 13)
 	{
 		printf("Test with \"%s\" file and %d buffer size with %s input : ", file_o[i], buf_size[i], input[i]);
@@ -33,7 +33,7 @@ int	test_write(t_params *param)
 		param->fd = open(file_o[i], O_RDONLY);
 		read(param->fd, param->str_o, 10);
 		param->fd = creat(file_u[i], O_WRONLY);
-		param->ret_u = write(param->fd, input[i], buf_size[i]);
+		param->ret_u = ft_write(param->fd, input[i], buf_size[i]);
 		param->err_u = errno;
 		close(param->fd);
 		param->fd = open(file_u[i], O_RDONLY);

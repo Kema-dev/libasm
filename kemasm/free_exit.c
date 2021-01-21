@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:17:28 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 17:51:20 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 11:07:41 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	free_exit(t_params *param)
 {
-	if (param->error_occured == 0)
+	if (param->error_occured != 0)
 		printf("\n\n%s\n", "Something went wrong... Now exiting");
 	if (param->str_o)
 		free(param->str_o);

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:50:44 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 18:03:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 11:04:42 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 int	test_strcmp(t_params *param)
 {
 	ssize_t	i;
-	char	*args2[15] = {"", "", "1", "", "1", "1", "12345", "12345", "12340", "12345", ""};
+	char	*args2[11] = {"", "", "1", "", "1", "1", "12345", "12345", "12340", "12345", ""};
 
 	i = -1;
 	printf("\n\nTesting strcmp:\n\n");
-	while (++i < 11)
+	while (++i < 10)
 	{
-		printf("Test with \"%s\" and \"%s\" : ", args2[i], args2[i]);
+		printf("Test with \"%s\" and \"%s\" : ", args2[i], args2[i + 1]);
 		param->ret_o = strcmp(args2[i], args2[i + 1]);
 		param->err_o = errno;
 		param->ret_u = ft_strcmp(args2[i], args2[i + 1]);

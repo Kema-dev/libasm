@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 19:29:44 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/20 17:39:40 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/21 11:21:56 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ moulinette:		all
 				$(CC) $(MOUL_FLAGS) -I $(INC_DIR) $(TESTER_FULL) $(NAME) -o $(MOUL_OUT)
 				printf "\033c"
 				./moulinette.out
-				rm -f "empty" "12345" "file_o" "file_u" 
+				@rm -f "empty" "12345" "file_o" "file_u" 
 
 clean:
 				$(RM) $(OBJS)

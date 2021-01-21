@@ -6,20 +6,20 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 20:38:57 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/20 14:03:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 11:16:55 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _LIBASM_H
 # define _LIBASM_H
 
-#include <sys/types.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
+# include <sys/types.h>
+# include <stdio.h>
+# include <errno.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 ssize_t		ft_read(int fd, void *buf, size_t count);
 ssize_t		ft_write(int fd, const void *buf, size_t count);
