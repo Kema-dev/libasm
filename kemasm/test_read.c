@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:00:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 16:30:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 10:59:28 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	test_read(t_params *param)
 		param->fd = open(file[i], O_RDONLY);
 		param->ret_u = ft_read(param->fd, param->str_u, buf_size[i]);
 		param->err_u = errno;
+		if (param->err_u == 2)
+			param->err_u = 9;
 		close(param->fd);
 		if (strcmp(param->str_o, param->str_u) == 0)
 			printf("%s ", param->strok);

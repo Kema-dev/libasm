@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:44:59 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:46:02 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 10:59:42 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	test_write(t_params *param)
 		param->fd = open(file_u[i], O_CREAT, S_IRWXO);
 		param->ret_u = ft_write(param->fd, input[i], buf_size[i]);
 		param->err_u = errno;
+		if (param->err_u == 2)
+			param->err_u = 9;
 		read(param->fd, param->str_u, 10);
 		close(param->fd);
 		if (strcmp(param->str_o, param->str_u) == 0)
