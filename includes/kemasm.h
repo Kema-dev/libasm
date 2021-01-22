@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:03:15 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:23:14 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 16:25:18 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define _KEMASM_H
 
 // o = original, u = user
+
+# include <sys/types.h>
+# include <stdio.h>
+# include <errno.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 typedef struct		s_params
 {
