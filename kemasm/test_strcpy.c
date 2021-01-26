@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:46:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:31:46 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:00:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	test_strcpy(t_params *param)
 	while (++i < 5)
 	{
 		printf("Test with \"%s\" : ", args1[i]);
+		errno = -1;
 		strcpy(param->str_o, args1[i]);
 		param->err_o = errno;
+		errno = -1;
 		ft_strcpy(param->str_u, args1[i]);
 		param->err_u = errno;
 		if (strcmp(param->str_o, param->str_u) == 0)

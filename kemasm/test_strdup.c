@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 15:05:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:31:47 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:00:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	test_strdup(t_params *param)
 		printf("Test with \"%s\" : ", args1[i]);
 		free(param->str_o);
 		free(param->str_u);
+		errno = -1;
 		if (!(param->str_o = strdup(args1[i])))
 			return (free_exit(param));
 		param->err_o = errno;
+		errno = -1;
 		if (!(param->str_u = ft_strdup(args1[i])))
 			return (free_exit(param));
 		param->err_u = errno;

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:15:21 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 12:53:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:01:16 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	test_strlen(t_params *param)
 	while (++i < 5)
 	{
 		printf("Test with \"%s\" : ", args1[i]);
-		param->err_o = errno;
-		param->ret_u = ft_strlen(args1[i]);
+		errno = -1;
 		param->ret_o = strlen(args1[i]);
+		param->err_o = errno;
+		errno = -1;
+		param->ret_u = ft_strlen(args1[i]);
 		param->err_u = errno;
 		if (param->ret_o == param->ret_u)
 			printf("%s ", param->strok);
