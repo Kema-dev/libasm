@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:44:59 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/26 10:01:29 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 15:14:30 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	test_write(t_params *param)
 		printf("Test with \"%s\" file and buffer size %d with \"%s\" input : ", file_o[i], buf_size[i], input[i]);
 		errno = -1;
 		param->fd = open(file_o[i], O_CREAT, S_IRWXO);
+		param->fd = -1;
 		param->ret_o = write(param->fd, input[i], buf_size[i]);
 		param->err_o = errno;
 		read(param->fd, param->str_o, 10);
