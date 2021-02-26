@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 14:50:44 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 14:17:02 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 14:24:27 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	test_strcmp(t_params *param)
 {
 	ssize_t	i;
-	char	*args2[13] = {"/xfff", "", "", "/xfff", "1", "", "1", "1", "12345", "12345", "12340", "12345", ""};
+	char	*args2[13] = {"/xff", "", "", "/xff", "1", "", "1", "1", "12345", "12345", "12340", "12345", ""};
 
 	i = -1;
 	printf("\n\nTesting strcmp:\n\n");

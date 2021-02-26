@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 12:59:36 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/21 15:57:37 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 14:20:05 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(void)
 {
 	t_params	*param;
 
+	//ft_strcmp(NULL, "1");
 	if (!(param = calloc(1, sizeof(t_params))))
 		return (-1);
 	if (struct_init(param) != 0)
